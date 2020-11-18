@@ -1,6 +1,6 @@
 package com.csz.music.service;
 
-import com.csz.music.domian.Song;
+import com.csz.music.domain.Song;
 
 import java.util.List;
 

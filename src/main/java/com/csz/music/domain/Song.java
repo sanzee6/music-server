@@ -1,4 +1,4 @@
-package com.csz.music.domian;
+package com.csz.music.domain;
 
 import java.io.Serializable;
 import java.util.Date;

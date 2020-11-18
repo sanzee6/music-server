@@ -1,7 +1,7 @@
 package com.csz.music.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.csz.music.domian.Singer;
+import com.csz.music.domain.Singer;
 import com.csz.music.service.SingerService;
 import com.csz.music.utils.Consts;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.csz.music.service.impl;
 
 import com.csz.music.dao.SingerMapper;
-import com.csz.music.domian.Singer;
+import com.csz.music.domain.Singer;
 import com.csz.music.service.SingerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

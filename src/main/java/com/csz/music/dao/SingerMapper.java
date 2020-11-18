@@ -1,6 +1,6 @@
 package com.csz.music.dao;
 
-import com.csz.music.domian.Singer;
+import com.csz.music.domain.Singer;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
