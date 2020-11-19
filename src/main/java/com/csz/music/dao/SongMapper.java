@@ -29,7 +29,7 @@ public interface SongMapper {
     //查询 ---所有歌曲
     public List<Song> allSong();
 
-    //查询 根据歌名模糊查询列表
+    //查询 根据歌名精确查询列表
     public List<Song> songOfName(String name);
 
     //根据歌手ID查询

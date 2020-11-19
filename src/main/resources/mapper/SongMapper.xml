@@ -129,12 +129,12 @@
         from song
     </select>
 
-    <!--    根据歌手模糊查询-->
+    <!--    根据歌手精确查询-->
     <select id="songOfName" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
         select
         <include refid="Blob_Column_List"></include>
         from song
-        where name like #{name}
+        where name = #{name}
     </select>
 
     <!--    根据歌手性别查询-->
