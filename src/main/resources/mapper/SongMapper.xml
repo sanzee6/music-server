@@ -23,7 +23,7 @@
     <sql id="Blob_Column_List">
         id,singer_id,`name`,introduction,create_time,update_time,pic,lyric,url
     </sql>
-    
+
     <!--    增加-->
     <insert id="insert" parameterType="com.csz.music.domain.Song">
         insert into song
@@ -135,6 +135,15 @@
         <include refid="Blob_Column_List"></include>
         from song
         where name = #{name}
+    </select>
+
+
+    <!--    根据歌手模糊查询-->
+    <select id="likeSongOfName" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Blob_Column_List"></include>
+        from song
+        where name like #{name}
     </select>
 
     <!--    根据歌手性别查询-->

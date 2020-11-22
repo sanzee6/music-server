@@ -75,6 +75,7 @@ public class ConsumerController {
         consumer.setBirth(birthDate);
         consumer.setIntroduction(introduction);
         consumer.setLocation(location);
+        consumer.setAvator(avator); //新增的
 //        consumer.setAvator(avator);
         boolean flag = consumerService.insert(consumer);
         if(flag){   //保存成功

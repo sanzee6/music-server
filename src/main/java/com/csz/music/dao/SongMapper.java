@@ -32,6 +32,9 @@ public interface SongMapper {
     //查询 根据歌名精确查询列表
     public List<Song> songOfName(String name);
 
+    //查询 根据歌名模糊查询列表
+    public List<Song> likeSongOfName(String name);
+
     //根据歌手ID查询
     public List<Song> songOfSingerId(Integer singerId);
 }

@@ -129,7 +129,7 @@ public class SingerController {
     }
 
     //查询 ---所有歌手
-    @RequestMapping(value = "/allSinger",method = RequestMethod.POST)
+    @RequestMapping(value = "/allSinger", method = {RequestMethod.GET,RequestMethod.POST})
     public Object allSinger(HttpServletRequest request){
         return singerService.allSinger();
     }

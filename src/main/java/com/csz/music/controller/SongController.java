@@ -238,11 +238,28 @@ public class SongController {
     }
 
     /**
-     * 根据歌手id查询歌曲
+     * 根据歌手名字精确查询歌曲
      */
     @RequestMapping(value = "/songOfSongName",method = RequestMethod.POST)
     public Object songOfSongName(HttpServletRequest request){
         String songName = request.getParameter("songName");
         return songService.songOfName(songName);
+    }
+
+    /**
+     * 根据歌手名字模糊查询歌曲
+     */
+    @RequestMapping(value = "/likeSongOfName", method = {RequestMethod.GET,RequestMethod.POST})
+    public Object likeSongOfName(HttpServletRequest request){
+        String songName = request.getParameter("songName");
+        return songService.likeSongOfName(songName);
+    }
+
+    /**
+     * 查询all歌曲
+     */
+    @RequestMapping(value = "/allSong",method = RequestMethod.GET)
+    public Object allSong(HttpServletRequest request){
+        return songService.allSong();
     }
 }

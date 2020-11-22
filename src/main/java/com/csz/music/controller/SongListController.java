@@ -103,7 +103,7 @@ public class SongListController {
     /**
      * 查询所有歌单
      */
-    @RequestMapping(value = "/allSongList",method = RequestMethod.POST)
+    @RequestMapping(value = "/allSongList",method = {RequestMethod.GET,RequestMethod.POST})
     public Object allSongList(HttpServletRequest request){
         return songListService.allSongList();
     }
