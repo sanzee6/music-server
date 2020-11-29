@@ -30,7 +30,7 @@ public class SingerController {
     /**
      * 添加歌手
      */
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/add",method = {RequestMethod.GET,RequestMethod.POST})
     public Object addSinger(HttpServletRequest request){
         JSONObject jsonObject = new JSONObject();
         String name = request.getParameter("name").trim();
@@ -71,7 +71,7 @@ public class SingerController {
     /**
      * 修改歌手
      */
-    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    @RequestMapping(value = "/update",method = {RequestMethod.GET,RequestMethod.POST})
     public Object updateSinger(HttpServletRequest request){
         JSONObject jsonObject = new JSONObject();
         String id = request.getParameter("id").trim();
@@ -114,7 +114,7 @@ public class SingerController {
     /**
      * 删除歌手
      */
-    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    @RequestMapping(value = "/delete",method = {RequestMethod.GET,RequestMethod.POST})
     public Object deleteSinger(HttpServletRequest request){
         String id = request.getParameter("id").trim();
         boolean flag = singerService.delete(Integer.parseInt(id));
@@ -122,7 +122,7 @@ public class SingerController {
     }
 
     //查询 ---通过主键查询
-    @RequestMapping(value = "/selectByPrimaryKey",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectByPrimaryKey",method = {RequestMethod.GET,RequestMethod.POST})
     public Object selectByPrimaryKey(HttpServletRequest request){
         String id = request.getParameter("id").trim();
         return singerService.selectByPrimaryKey(Integer.parseInt(id));
@@ -134,14 +134,14 @@ public class SingerController {
         return singerService.allSinger();
     }
     //查询 根据歌手模糊查询列表
-    @RequestMapping(value = "/singerOfName",method = RequestMethod.GET)
+    @RequestMapping(value = "/singerOfName",method = {RequestMethod.GET,RequestMethod.POST})
     public Object singerOfName(HttpServletRequest request){
         String name = request.getParameter("name").trim();
         return singerService.singerOfName("%"+name+"%");
     }
 
     //根据性别查询
-    @RequestMapping(value = "/singerOfSex",method = RequestMethod.GET)
+    @RequestMapping(value = "/singerOfSex",method = {RequestMethod.GET,RequestMethod.POST})
     public Object singerOfSex(HttpServletRequest request){
         String sex = request.getParameter("sex").trim();
         return singerService.singerOfSex(Integer.parseInt(sex));
@@ -150,7 +150,7 @@ public class SingerController {
     /**
      * 更新歌手图片功能
      */
-    @RequestMapping(value = "/updateSingerPic",method = RequestMethod.POST)
+    @RequestMapping(value = "/updateSingerPic",method = {RequestMethod.GET,RequestMethod.POST})
     public Object updateSingerPic(@RequestParam("file") MultipartFile avatorFile, @RequestParam("id")int id){
         JSONObject jsonObject = new JSONObject();
         if(avatorFile.isEmpty()){

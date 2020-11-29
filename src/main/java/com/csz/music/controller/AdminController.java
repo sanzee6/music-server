@@ -18,7 +18,7 @@ public class AdminController {
     /**
      * 判断是否登陆成功
      */
-    @RequestMapping(value = "/admin/login/status",method = RequestMethod.POST)
+    @RequestMapping(value = "/admin/login/status",method = {RequestMethod.GET,RequestMethod.POST})
     public Object loginStatus(HttpServletRequest request, HttpSession session){
         JSONObject jsonObject = new JSONObject();
         String name = request.getParameter("name");

@@ -28,7 +28,7 @@ public class SongListController {
     /**
      * 添加歌单
      */
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/add",method = {RequestMethod.GET,RequestMethod.POST})
     public Object addSongList(HttpServletRequest request){
         JSONObject jsonObject = new JSONObject();
         String title = request.getParameter("title").trim();      //标题
@@ -56,7 +56,7 @@ public class SongListController {
     /**
      * 修改歌单
      */
-    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    @RequestMapping(value = "/update",method = {RequestMethod.GET,RequestMethod.POST})
     public Object updateSongList(HttpServletRequest request){
         JSONObject jsonObject = new JSONObject();
         String id = request.getParameter("id").trim();          //主键
@@ -84,7 +84,7 @@ public class SongListController {
     /**
      * 删除歌单
      */
-    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    @RequestMapping(value = "/delete",method = {RequestMethod.GET,RequestMethod.POST})
     public Object deleteSongList(HttpServletRequest request){
         String id = request.getParameter("id").trim();          //主键
         boolean flag = songListService.delete(Integer.parseInt(id));
@@ -94,7 +94,7 @@ public class SongListController {
     /**
      * 根据主键查询整个对象
      */
-    @RequestMapping(value = "/selectByPrimaryKey",method = RequestMethod.POST)
+    @RequestMapping(value = "/selectByPrimaryKey",method = {RequestMethod.GET,RequestMethod.POST})
     public Object selectByPrimaryKey(HttpServletRequest request){
         String id = request.getParameter("id").trim();          //主键
         return songListService.selectByPrimaryKey(Integer.parseInt(id));
@@ -111,7 +111,7 @@ public class SongListController {
     /**
      * 根据标题精确查询歌单列表
      */
-    @RequestMapping(value = "/songListOfTitle",method = RequestMethod.POST)
+    @RequestMapping(value = "/songListOfTitle",method = {RequestMethod.GET,RequestMethod.POST})
     public Object songListOfName(HttpServletRequest request){
         String title = request.getParameter("title").trim();          //歌单标题
         return songListService.songListOfTitle(title);
@@ -120,7 +120,7 @@ public class SongListController {
     /**
      * 根据标题模糊查询歌单列表
      */
-    @RequestMapping(value = "/likeTitle",method = RequestMethod.POST)
+    @RequestMapping(value = "/likeTitle",method = {RequestMethod.GET,RequestMethod.POST})
     public Object likeTitle(HttpServletRequest request){
         String title = request.getParameter("title").trim();          //歌单标题
         return songListService.likeTitle("%"+title+"%");
@@ -129,7 +129,7 @@ public class SongListController {
     /**
      * 根据风格模糊查询歌单列表
      */
-    @RequestMapping(value = "/likeStyle",method = RequestMethod.POST)
+    @RequestMapping(value = "/likeStyle",method = {RequestMethod.GET,RequestMethod.POST})
     public Object likeStyle(HttpServletRequest request){
         String style = request.getParameter("style").trim();          //歌单风格
         return songListService.likeTitle("%"+style+"%");
@@ -138,7 +138,7 @@ public class SongListController {
     /**
      * 更新歌单图片
      */
-    @RequestMapping(value = "/updateSongListPic",method = RequestMethod.POST)
+    @RequestMapping(value = "/updateSongListPic",method = {RequestMethod.GET,RequestMethod.POST})
     public Object updateSongListPic(@RequestParam("file") MultipartFile avatorFile, @RequestParam("id")int id){
         JSONObject jsonObject = new JSONObject();
         if(avatorFile.isEmpty()){

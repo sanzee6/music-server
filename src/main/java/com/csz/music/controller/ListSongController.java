@@ -28,7 +28,7 @@ public class ListSongController {
     /**
      * 给歌单添加歌曲
      */
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/add",method = {RequestMethod.GET,RequestMethod.POST})
     public Object addListSong(HttpServletRequest request){
         JSONObject jsonObject = new JSONObject();
         //获取前端传来的参数

@@ -32,7 +32,7 @@ public class ConsumerController {
     /**
      * 添加前端用户
      */
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/add",method = {RequestMethod.GET,RequestMethod.POST})
     public Object addConsumer(HttpServletRequest request){
         JSONObject jsonObject = new JSONObject();
         String username = request.getParameter("username").trim();     //账号
@@ -100,7 +100,7 @@ public class ConsumerController {
     /**
      * 修改前端用户
      */
-    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    @RequestMapping(value = "/update",method = {RequestMethod.GET,RequestMethod.POST})
     public Object updateConsumer(HttpServletRequest request){
         JSONObject jsonObject = new JSONObject();
         String id = request.getParameter("id").trim();          //主键
@@ -157,7 +157,7 @@ public class ConsumerController {
     /**
      * 删除前端用户
      */
-    @RequestMapping(value = "/delete",method = RequestMethod.GET)
+    @RequestMapping(value = "/delete",method = {RequestMethod.GET,RequestMethod.POST})
     public Object deleteConsumer(HttpServletRequest request){
         String id = request.getParameter("id").trim();          //主键
         boolean flag = consumerService.delete(Integer.parseInt(id));
@@ -167,7 +167,7 @@ public class ConsumerController {
     /**
      * 根据主键查询整个对象
      */
-    @RequestMapping(value = "/selectByPrimaryKey",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectByPrimaryKey",method = {RequestMethod.GET,RequestMethod.POST})
     public Object selectByPrimaryKey(HttpServletRequest request){
         String id = request.getParameter("id").trim();          //主键
         return consumerService.selectByPrimaryKey(Integer.parseInt(id));
@@ -176,7 +176,7 @@ public class ConsumerController {
     /**
      * 查询所有前端用户
      */
-    @RequestMapping(value = "/allConsumer",method = RequestMethod.GET)
+    @RequestMapping(value = "/allConsumer",method = {RequestMethod.GET,RequestMethod.POST})
     public Object allConsumer(HttpServletRequest request){
         return consumerService.allConsumer();
     }
@@ -184,7 +184,7 @@ public class ConsumerController {
     /**
      * 更新前端用户图片
      */
-    @RequestMapping(value = "/updateConsumerPic",method = RequestMethod.POST)
+    @RequestMapping(value = "/updateConsumerPic",method = {RequestMethod.GET,RequestMethod.POST})
     public Object updateConsumerPic(@RequestParam("file") MultipartFile avatorFile, @RequestParam("id")int id){
         JSONObject jsonObject = new JSONObject();
         if(avatorFile.isEmpty()){
@@ -231,7 +231,7 @@ public class ConsumerController {
     /**
      * 前端用户登录
      */
-    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @RequestMapping(value = "/login",method = {RequestMethod.GET,RequestMethod.POST})
     public Object login(HttpServletRequest request){
         JSONObject jsonObject = new JSONObject();
         String username = request.getParameter("username").trim();     //账号

@@ -30,7 +30,7 @@ public class SongController {
     /**
      * 添加歌曲
      */
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    @RequestMapping(value = "/add",method = {RequestMethod.GET,RequestMethod.POST})
     public JSONObject addSong(HttpServletRequest request, @RequestParam("file") MultipartFile mpFile){
         JSONObject jsonObject = new JSONObject();
         //获取前端传来的参数
@@ -88,7 +88,7 @@ public class SongController {
     /**
      * 根据歌手id查询歌曲
      */
-    @RequestMapping(value = "/singer/detail",method = RequestMethod.POST)
+    @RequestMapping(value = "/singer/detail",method = {RequestMethod.GET,RequestMethod.POST})
     public Object songOfSingerId(HttpServletRequest request){
         String singerId = request.getParameter("singerId");
         return songService.songOfSingerId(Integer.parseInt(singerId));
@@ -98,7 +98,7 @@ public class SongController {
     /**
      * 修改歌曲
      */
-    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    @RequestMapping(value = "/update",method = {RequestMethod.GET,RequestMethod.POST})
     public Object updateSong(HttpServletRequest request){
         JSONObject jsonObject = new JSONObject();
         String id = request.getParameter("id").trim();          //主键
@@ -125,7 +125,7 @@ public class SongController {
     /**
      * 删除歌曲
      */
-    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    @RequestMapping(value = "/delete",method = {RequestMethod.GET,RequestMethod.POST})
     public Object deleteSinger(HttpServletRequest request){
         //-TODO 先查询到数据库中对应的文件地址，删除掉它再进行下面的代码
         String id = request.getParameter("id").trim();          //主键
@@ -136,7 +136,7 @@ public class SongController {
     /**
      * 更新歌曲图片
      */
-    @RequestMapping(value = "/updateSongPic",method = RequestMethod.POST)
+    @RequestMapping(value = "/updateSongPic",method = {RequestMethod.GET,RequestMethod.POST})
     public Object updateSongPic(@RequestParam("file") MultipartFile avatorFile, @RequestParam("id")int id){
         JSONObject jsonObject = new JSONObject();
         if(avatorFile.isEmpty()){
@@ -185,7 +185,7 @@ public class SongController {
     /**
      * 更新歌曲
      */
-    @RequestMapping(value = "/updateSongUrl",method = RequestMethod.POST)
+    @RequestMapping(value = "/updateSongUrl",method = {RequestMethod.GET,RequestMethod.POST})
     public Object updateSongUrl(@RequestParam("file") MultipartFile avatorFile, @RequestParam("id")int id){
         JSONObject jsonObject = new JSONObject();
         if(avatorFile.isEmpty()){
@@ -231,7 +231,7 @@ public class SongController {
     /**
      * 根据歌曲id查询歌曲对象
      */
-    @RequestMapping(value = "/detail",method = RequestMethod.POST)
+    @RequestMapping(value = "/detail",method = {RequestMethod.GET,RequestMethod.POST})
     public Object detail(HttpServletRequest request){
         String songId = request.getParameter("songId");
         return songService.selectByPrimaryKey(Integer.parseInt(songId));
@@ -240,7 +240,7 @@ public class SongController {
     /**
      * 根据歌手名字精确查询歌曲
      */
-    @RequestMapping(value = "/songOfSongName",method = RequestMethod.POST)
+    @RequestMapping(value = "/songOfSongName",method = {RequestMethod.GET,RequestMethod.POST})
     public Object songOfSongName(HttpServletRequest request){
         String songName = request.getParameter("songName");
         return songService.songOfName(songName);
@@ -258,7 +258,7 @@ public class SongController {
     /**
      * 查询all歌曲
      */
-    @RequestMapping(value = "/allSong",method = RequestMethod.GET)
+    @RequestMapping(value = "/allSong",method = {RequestMethod.GET,RequestMethod.POST})
     public Object allSong(HttpServletRequest request){
         return songService.allSong();
     }
