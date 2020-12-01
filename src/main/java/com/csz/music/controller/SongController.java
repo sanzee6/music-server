@@ -1,6 +1,7 @@
 package com.csz.music.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.csz.music.domain.Singer;
 import com.csz.music.domain.Song;
 import com.csz.music.service.SongService;
 import com.csz.music.utils.Consts;
@@ -14,12 +15,14 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
- * author:你的jiang哥哥
  * 歌曲管理controller
  */
-
 @RestController
 @RequestMapping("/song")
 public class SongController {
@@ -31,7 +34,7 @@ public class SongController {
      * 添加歌曲
      */
     @RequestMapping(value = "/add",method = {RequestMethod.GET,RequestMethod.POST})
-    public JSONObject addSong(HttpServletRequest request, @RequestParam("file") MultipartFile mpFile){
+    public Object addSong(HttpServletRequest request, @RequestParam("file")MultipartFile mpFile){
         JSONObject jsonObject = new JSONObject();
         //获取前端传来的参数
         String singerId = request.getParameter("singerId").trim();  //所属歌手id
@@ -94,7 +97,6 @@ public class SongController {
         return songService.songOfSingerId(Integer.parseInt(singerId));
     }
 
-
     /**
      * 修改歌曲
      */
@@ -122,6 +124,7 @@ public class SongController {
         jsonObject.put(Consts.MSG,"修改失败");
         return jsonObject;
     }
+
     /**
      * 删除歌曲
      */
@@ -228,6 +231,7 @@ public class SongController {
             return jsonObject;
         }
     }
+
     /**
      * 根据歌曲id查询歌曲对象
      */
@@ -249,17 +253,38 @@ public class SongController {
     /**
      * 根据歌手名字模糊查询歌曲
      */
-    @RequestMapping(value = "/likeSongOfName", method = {RequestMethod.GET,RequestMethod.POST})
+    @RequestMapping(value = "/likeSongOfName",method = {RequestMethod.GET,RequestMethod.POST})
     public Object likeSongOfName(HttpServletRequest request){
         String songName = request.getParameter("songName");
         return songService.likeSongOfName(songName);
     }
 
     /**
-     * 查询all歌曲
+     * 查询所有歌曲
      */
     @RequestMapping(value = "/allSong",method = {RequestMethod.GET,RequestMethod.POST})
     public Object allSong(HttpServletRequest request){
         return songService.allSong();
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

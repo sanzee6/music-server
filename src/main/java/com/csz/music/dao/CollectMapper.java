@@ -27,6 +27,13 @@ public interface CollectMapper {
     public List<Collect> allCollect();
 
     /**
+     * 根据用户id和歌曲id删除
+     */
+
+    public int deleteByUserIdSongId(@Param("userId") Integer userId, @Param("songId") Integer songId);
+
+
+    /**
      * 查询某个用户的收藏列表
      */
     public List<Collect> collectOfUserId(Integer userId);

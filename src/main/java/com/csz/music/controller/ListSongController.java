@@ -5,11 +5,11 @@ import com.csz.music.domain.ListSong;
 import com.csz.music.service.ListSongService;
 import com.csz.music.utils.Consts;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
@@ -52,7 +52,7 @@ public class ListSongController {
     /**
      * 根据歌单id查询歌曲
      */
-    @GetMapping(value = "/detail")
+    @RequestMapping(value = "/detail",method = RequestMethod.GET)
     public Object detail(HttpServletRequest request){
         String songListId = request.getParameter("songListId");
         return listSongService.listSongOfSongListId(Integer.parseInt(songListId));
@@ -61,10 +61,10 @@ public class ListSongController {
     /**
      * 删除歌单里的歌曲
      */
-    @GetMapping("/delete")
+    @RequestMapping(value = "/delete",method = RequestMethod.GET)
     public Object delete(HttpServletRequest request){
-        String songId = request.getParameter("songId").trim();  //歌曲ID               //歌曲id
-        String songListId = request.getParameter("songListId").trim(); //歌单ID        //歌单id
+        String songId = request.getParameter("songId").trim();                 //歌曲id
+        String songListId = request.getParameter("songListId").trim();        //歌单id
         boolean flag = listSongService.deleteBySongIdAndSongListId(Integer.parseInt(songId),Integer.parseInt(songListId));
         return flag;
     }
