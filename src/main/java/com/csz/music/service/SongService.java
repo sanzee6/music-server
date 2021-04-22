@@ -35,5 +35,7 @@ public interface SongService {
 
     //根据歌手ID查询
     public List<Song> songOfSingerId(Integer singerId);
+    //根据歌曲tag查询
+    public List<Song> songOfSongTag(String songName);
 
 }

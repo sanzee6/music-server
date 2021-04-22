@@ -12,16 +12,17 @@
         <result column="pic" jdbcType="VARCHAR" property="pic"/>
 <!--        <result column="lyric" jdbcType="LONGVARCHAR" property="lyric"/>-->
         <result column="url" jdbcType="VARCHAR" property="url"/>
+        <result column="tag" jdbcType="VARCHAR" property="tag"/>
     </resultMap>
     <resultMap id="ResultMapWithBLOBs" type="com.csz.music.domain.Song" extends="BaseResultMap" >
         <result column="lyric" jdbcType="LONGVARCHAR" property="lyric"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id,singer_id,introduction,create_time,update_time,pic,url
+        id,singer_id,introduction,create_time,update_time,pic,url,tag
     </sql>
 
     <sql id="Blob_Column_List">
-        id,singer_id,`name`,introduction,create_time,update_time,pic,lyric,url
+        id,singer_id,`name`,introduction,create_time,update_time,pic,lyric,url,tag
     </sql>
 
     <!--    增加-->
@@ -51,6 +52,9 @@
             <if test="url!=null">
                 url,
             </if>
+            <if test="tag!=null">
+                tag,
+            </if>
 
         </trim>
         <trim prefix="values(" suffix=")" suffixOverrides=",">
@@ -76,6 +80,9 @@
             </if>
             <if test="url!=null">
                 #{url},
+            </if>
+            <if test="tag!=null">
+                #{tag},
             </if>
         </trim>
     </insert>
@@ -103,6 +110,9 @@
             </if>
             <if test="url!=null">
                 url = #{url},
+            </if>
+            <if test="tag!=null">
+                tag = #{tag},
             </if>
         </set>
         where id = #{id}
@@ -137,13 +147,12 @@
         where name = #{name}
     </select>
 
-
     <!--    根据歌手模糊查询-->
     <select id="likeSongOfName" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
         select
         <include refid="Blob_Column_List"></include>
         from song
-        where name like #{name}
+        where name like "%"#{name}"%"
     </select>
 
     <!--    根据歌手性别查询-->
@@ -152,5 +161,12 @@
         <include refid="Blob_Column_List"></include>
         from song
         where singer_id =#{singerId}
+    </select>
+    <!--    根据tag查询-->
+    <select id="songOfSongTag" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String">
+        select
+        <include refid="Blob_Column_List"></include>
+        from song
+        where tag = #{tag}
     </select>
 </mapper>

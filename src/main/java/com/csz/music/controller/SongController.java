@@ -267,6 +267,14 @@ public class SongController {
         return songService.allSong();
     }
 
+    /**
+     * 根据tag查询歌曲
+     */
+    @RequestMapping(value = "/songOfSongTag",method = {RequestMethod.GET,RequestMethod.POST})
+    public Object songOfSongTag(HttpServletRequest request){
+        String songName = request.getParameter("songName");
+        return songService.songOfSongTag(songName);
+    }
 }
 
 

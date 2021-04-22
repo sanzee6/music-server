@@ -25,6 +25,8 @@ public class Song implements Serializable {
     private String lyric;
     //歌曲地址
     private String url;
+    // 标签
+    private String tag;
 
     public Integer getId() {
         return id;
@@ -96,5 +98,13 @@ public class Song implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }

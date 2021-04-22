@@ -61,4 +61,15 @@ public class SongServiceImpl implements SongService {
     public List<Song> songOfSingerId(Integer singerId) {
         return songMapper.songOfSingerId(singerId);
     }
+
+    @Override
+    public List<Song> songOfSongTag(String songName) {
+        List<Song> songs = songMapper.likeSongOfName(songName);
+        if (songs.size() <1) {
+            return null;
+        }
+        String tag = songs.get(0).getTag();
+        return songMapper.songOfSongTag(tag);
+    }
+
 }
